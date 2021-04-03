@@ -57,6 +57,20 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     `);
   });
 
+  it('strip trailing comma after null', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": null,
+      }
+    `),
+    ).toBe(`
+      {
+        "a": null
+      }
+    `);
+  });
+
   it('strip trailing comma after object', () => {
     expect(
       stripJsonTrailingCommas(`
