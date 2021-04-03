@@ -1,23 +1,135 @@
 import stripJsonTrailingCommas from '~/index';
 
 describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
+  it('strip trailing comma after string', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": "1",
+      }
+    `),
+    ).toBe(`
+      {
+        "a": "1"
+      }
+    `);
+  });
+
+  it('strip trailing comma after number', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": 1,
+      }
+    `),
+    ).toBe(`
+      {
+        "a": 1
+      }
+    `);
+  });
+
+  it('strip trailing comma after true', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": true,
+      }
+    `),
+    ).toBe(`
+      {
+        "a": true
+      }
+    `);
+  });
+
+  it('strip trailing comma after false', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": false,
+      }
+    `),
+    ).toBe(`
+      {
+        "a": false
+      }
+    `);
+  });
+
+  it('strip trailing comma after object', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": {},
+      }
+    `),
+    ).toBe(`
+      {
+        "a": {}
+      }
+    `);
+  });
+
+  it('strip trailing comma after array', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": [],
+      }
+    `),
+    ).toBe(`
+      {
+        "a": []
+      }
+    `);
+  });
+
+  it('ignore trailing comma after missing value', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": a,
+      }
+    `),
+    ).toBe(`
+      {
+        "a": a,
+      }
+    `);
+  });
+
+  it('ignore trailing comma after missing value', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": ,
+      }
+    `),
+    ).toBe(`
+      {
+        "a": ,
+      }
+    `);
+  });
+
   it('strip trailing comma at object', () => {
     expect(
       stripJsonTrailingCommas(`
       {
-        "object": {
-          "a": "1",
-          "b": "2",
-          "c": true   ,
+        "a": {
+          "b": "1",
+          "c": "2",
+          "d": true   ,
         },
       }
     `),
     ).toBe(`
       {
-        "object": {
-          "a": "1",
-          "b": "2",
-          "c": true
+        "a": {
+          "b": "1",
+          "c": "2",
+          "d": true
         }
       }
     `);
@@ -27,38 +139,38 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     expect(
       stripJsonTrailingCommas(`
       {
-        "object": {
-          "a": {
-            "a": "1",
-            "b": false,
-            "c": {
-              "a": true,
-              "b": {
-                "a": {
+        "a": {
+          "b": {
+            "c": "1",
+            "d": false,
+            "e": {
+              "f": true,
+              "g": {
+                "h": {
                   false,
                 },
               },
             },
-            "3": 1,
+            "i": 1,
           }           ,
         },
       }
     `),
     ).toBe(`
       {
-        "object": {
-          "a": {
-            "a": "1",
-            "b": false,
-            "c": {
-              "a": true,
-              "b": {
-                "a": {
+        "a": {
+          "b": {
+            "c": "1",
+            "d": false,
+            "e": {
+              "f": true,
+              "g": {
+                "h": {
                   false
                 }
               }
             },
-            "3": 1
+            "i": 1
           }
         }
       }
@@ -69,7 +181,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     expect(
       stripJsonTrailingCommas(`
       {
-        "array": [
+        "a": [
           1,
           2,
           3,
@@ -78,7 +190,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     `),
     ).toBe(`
       {
-        "array": [
+        "a": [
           1,
           2,
           3
@@ -91,7 +203,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     expect(
       stripJsonTrailingCommas(`
       {
-        "array": [
+        "a": [
           [
             [
               [
@@ -122,7 +234,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     `),
     ).toBe(`
       {
-        "array": [
+        "a": [
           [
             [
               [
@@ -157,22 +269,22 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     expect(
       stripJsonTrailingCommas(`
       {
-        "object": {
-          "a": [
+        "a": {
+          "b": [
             1,
             2,
             3,
           ],
-          "b": {
-            "a": {
-              "a": {
-                "a": [
+          "c": {
+            "d": {
+              "e": {
+                "f": [
                 ]           ,
               },
             },
           },
         },
-        "array": [
+        "g": [
           [
             [
               [
@@ -180,15 +292,15 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
                 2,
                 3,
                 {
-                  "a": "1",
-                  "b": "2"    ,
+                  "h": "1",
+                  "i": "2"    ,
                 },
               ],
               1,
               [
                 1,
                 {
-                  "a": 1,
+                  "j": 1,
                 },
                 3,
                 [
@@ -200,29 +312,29 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
             ]             ,
           ],
           {
-            a: 1,
+            "k": 1,
           },
         ],
       }
     `),
     ).toBe(`
       {
-        "object": {
-          "a": [
+        "a": {
+          "b": [
             1,
             2,
             3
           ],
-          "b": {
-            "a": {
-              "a": {
-                "a": [
+          "c": {
+            "d": {
+              "e": {
+                "f": [
                 ]
               }
             }
           }
         },
-        "array": [
+        "g": [
           [
             [
               [
@@ -230,15 +342,15 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
                 2,
                 3,
                 {
-                  "a": "1",
-                  "b": "2"
+                  "h": "1",
+                  "i": "2"
                 }
               ],
               1,
               [
                 1,
                 {
-                  "a": 1
+                  "j": 1
                 },
                 3,
                 [
@@ -250,7 +362,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
             ]
           ],
           {
-            a: 1
+            "k": 1
           }
         ]
       }
@@ -298,6 +410,35 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     `);
   });
 
+  it('ignore multiple trailing commas in object', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": 1,,
+      }
+    `),
+    ).toBe(`
+      {
+        "a": 1,,
+      }
+    `);
+    expect(
+      stripJsonTrailingCommas(`
+      {
+        "a": 1,     ,  ,
+        ,
+      }
+          ,
+    `),
+    ).toBe(`
+      {
+        "a": 1,     ,  ,
+        ,
+      }
+          ,
+    `);
+  });
+
   it('ignore invalid trailing comma in empty array', () => {
     expect(
       stripJsonTrailingCommas(`
@@ -325,6 +466,31 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
     `),
     ).toBe(`
       [  ,  ,  ]
+          ,
+    `);
+  });
+
+  it('ignore multiple trailing commas in array', () => {
+    expect(
+      stripJsonTrailingCommas(`
+      [1,,]
+    `),
+    ).toBe(`
+      [1,,]
+    `);
+    expect(
+      stripJsonTrailingCommas(`
+      [
+        1, ,  ,
+        ,
+      ]
+          ,
+    `),
+    ).toBe(`
+      [
+        1, ,  ,
+        ,
+      ]
           ,
     `);
   });
