@@ -1,0 +1,42 @@
+{
+  "name": "typescript-starter",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": {
+    "name": "nokazn",
+    "url": "https://github.com/nokazn"
+  },
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --ignore-path ./.prettierignore --write ./**/*.{t,j}s{,x}",
+    "lint": "eslint --ignore-path .eslintignore ./**/*.{t,j}s{,x}",
+    "lint:fix": "eslint --ignore-path .eslintignore ./**/*.{t,j}s{,x} --fix",
+    "test": "jest",
+    "dev": "ts-node src/index.ts",
+    "dev:watch": "ts-node-dev --respawn src/index.ts",
+    "build": "rimraf dist/ && tsc -p ./tsconfig.json",
+    "start": "npm run build && node ./dist/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.37",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^24.3.3",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
+  }
+}
