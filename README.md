@@ -1,134 +1,56 @@
-# typescript-starter
+# strip-json-trailing-commas
 
-## setting environmental variables
+Strip trailing commas from JSON files.
 
-```bash
-$ echo PORT=3000 > .env
-```
-
-## scripts
-
-### format
+## Installation
 
 ```bash
-$ yarn format
+$ yarn add strip-json-trailing-commas
 ```
 
-### lint
+or
 
 ```bash
-$ yarn lint
-
-# auto fix
-$ yarn lint:fix
+$ npm i strip-json-trailing-commas
 ```
 
-### dev
+## Usage
 
-```bash
-$ yarn dev
+```ts
+import stripJsonTrailingCommas from 'strip-json-trailing-commas';
 
-# hot reload
-$ yarn dev:watch
+console.log(stripJsonTrailingCommas(`{ "a": 1, }`));
+// -> { "a": 1 }
+
+// with options
+console.log(
+  stripJsonTrailingCommas(`{ "a": 1   , }`, {
+    stripWhitespace: false,
+  }),
+);
+// -> { "a": 1    }
 ```
 
-### test
+## API
 
-```bash
-$ yarn test
-```
+`stripJsonTrailingCommas(content, options?)`
 
-### build
+### `content`
 
-```bash
-$ yarn build
-```
+Type: `string`
 
-### start
+Receive JSON string and returns a string without trailing commas.
 
-```bash
-$ yarn start
-$ curl localhost:8000
-Hello World!
-```
+### `options`
 
-## eslint
+Type: `object`
 
-eslint 関連の各種プラグインなどをインストールする。
+#### `stripWhitespace`
 
-```bash
-$ yarn add -D @typescript-eslint/eslint-plugin \
-  @typescript-eslint/parser \
-  eslint \
-  eslint-config-airbnb-base \
-  eslint-plugin-import
-```
+- Type: `boolean`
+- Default: `true`
 
-## prettier
-
-prettier 関連の各種プラグインなどをインストールする。
-
-```bash
-$ yarn add -D prettier \
-  eslint-config-prettier
-```
-
-eslint との競合を防ぐため、`.eslintrc.js`を修正する。
-
-```diff
-// .eslintrc.js
- extends: [
-+ "prettier",
-+ "prettier/@typescript-eslint",
- ]
-```
-
-`.prettierrc.json` に適宜設定する。
-
-```json:.prettierrc.json
-{
-  "printWidth": 100,
-  "singleQuote": true,
-  "jsxSingleQuote": true,
-  "trailingComma": "all"
-}
-```
-
-## jest
-
-```bash
-$ yarn add -D jest ts-jest eslint-plugin-jest @types/jest
-```
-
-```js:jest.config.js
-module.exports = {
-  roots: ['.'],
-  transform: {
-    '^.+\\.ts$': 'ts-jest',
-  },
-  globals: {
-    'ts-jest': {
-      tsConfig: './tsconfig.json',
-    },
-  },
-};
-```
-
-ESLint rules for Jest
-
-```diff
-// .eslintrc.js
- env: {
-   es6: true,
-   node: true,
-+  'jest/globals': true,
- },
-
- // ...
-
-- plugins: ['@typescript-eslint'],
-+ plugins: ['@typescript-eslint','jest'],
-```
+Strip some whitespace between end of data and trailing commas.
 
 ## License
 
