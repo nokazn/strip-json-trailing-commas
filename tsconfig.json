@@ -11,7 +11,7 @@
     "declarationMap": true,
     "sourceMap": true,
     // "outFile": "./",
-    "outDir": "./dist/",
+    "outDir": "./lib/",
     "rootDir": "./",
     // "composite": true,
     // "tsBuildInfoFile": "./",

@@ -1,4 +1,4 @@
 node_modules
-dist/*
+lib/*
 **/*.d.ts
 jest.config.js
