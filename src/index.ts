@@ -10,7 +10,7 @@ export default function stripJsonTrailingCommas(content: string, options: Option
      * match with 0 or more spaces and ','
      * followed by '}' or ']'
      */
-    return content.replace(/(?<=true|false|null|["\d}\]]\s*)\s*,(?=\s*[}\]])/g, '');
+    return content.replace(/(?<=(true|false|null|["\d}\]])\s*)\s*,(?=\s*[}\]])/g, '');
   }
 
   /**
@@ -18,5 +18,5 @@ export default function stripJsonTrailingCommas(content: string, options: Option
    * match with ','
    * followed by '}' or ']'
    */
-  return content.replace(/(?<=true|false|null|["\d}\]]\s*),(?=\s*[}\]])/g, '');
+  return content.replace(/(?<=(true|false|null|["\d}\]])\s*),(?=\s*[}\]])/g, '');
 }

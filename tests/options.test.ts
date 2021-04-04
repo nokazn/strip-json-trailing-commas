@@ -3,11 +3,14 @@ import stripJsonTrailingCommas from '~/index';
 describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
   it('strip trailing comma after string', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": "1",
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": "1"
@@ -17,11 +20,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma after number', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": 1,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": 1
@@ -31,11 +37,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma after true', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": true,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": true
@@ -45,11 +54,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma after false', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": false,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": false
@@ -59,11 +71,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma after null', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": null,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": null
@@ -73,11 +88,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma after object', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": {},
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": {}
@@ -87,11 +105,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma after array', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": [],
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": []
@@ -101,11 +122,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore trailing comma after invalid value', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": a,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": a,
@@ -115,11 +139,14 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore trailing comma after missing value', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": ,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": ,
@@ -129,7 +156,8 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma at object', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": {
           "b": "1",
@@ -137,13 +165,15 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
           "d": true   ,
         },
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": {
           "b": "1",
           "c": "2",
-          "d": true
+          "d": true   
         }
       }
     `);
@@ -151,7 +181,8 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma at nested objects', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": {
           "b": {
@@ -169,7 +200,9 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
           }           ,
         },
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": {
@@ -185,7 +218,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
               }
             },
             "i": 1
-          }
+          }           
         }
       }
     `);
@@ -193,7 +226,8 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma at array', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": [
           1,
@@ -201,21 +235,24 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
           3,
         ]      ,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": [
           1,
           2,
           3
-        ]
+        ]      
       }
     `);
   });
 
   it('strip trailing comma at nested arrays', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": [
           [
@@ -245,7 +282,9 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
           "3"  ,
         ],
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": [
@@ -254,7 +293,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
               [
                 1,
                 2,
-                3
+                3  
               ],
               1,
               [
@@ -264,7 +303,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
                 [
                   1,
                   2   ,
-                  null
+                  null   
                 ]
               ]       ,
               2,
@@ -273,7 +312,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
           ],
           "1",
           "2",
-          "3"
+          "3"  
         ]
       }
     `);
@@ -281,7 +320,8 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('strip trailing comma in objects and arrays', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": {
           "b": [
@@ -330,7 +370,9 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
           },
         ],
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": {
@@ -343,7 +385,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
             "d": {
               "e": {
                 "f": [
-                ]
+                ]           
               }
             }
           }
@@ -357,7 +399,7 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
                 3,
                 {
                   "h": "1",
-                  "i": "2"
+                  "i": "2"    
                 }
               ],
               1,
@@ -372,8 +414,8 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
                   "2",
                   "3"
                 ]
-              ]
-            ]
+              ]   
+            ]             
           ],
           {
             "k": 1
@@ -385,17 +427,23 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore invalid trailing comma at end of the content', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {},
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {},
     `);
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {}
             ,
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {}
             ,
@@ -404,20 +452,26 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore invalid trailing comma in empty object', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {,},
-      `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {,},
-      `);
+    `);
   });
 
   it('ignore invalid trailing comma in empty object with some spaces', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {    ,  }
           ,
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {    ,  }
           ,
@@ -426,24 +480,30 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore multiple trailing commas in object', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": 1,,
       }
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": 1,,
       }
     `);
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       {
         "a": 1,     ,  ,
         ,
       }
           ,
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       {
         "a": 1,     ,  ,
@@ -455,9 +515,12 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore invalid trailing comma in empty array', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       [,],
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       [,],
     `);
@@ -465,19 +528,25 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore invalid trailing comma in empty array with some spaces', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       [    ,  ]
           ,
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       [    ,  ]
           ,
     `);
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       [  ,  ,  ]
           ,
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       [  ,  ,  ]
           ,
@@ -486,20 +555,26 @@ describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
 
   it('ignore multiple trailing commas in array', () => {
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       [1,,]
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       [1,,]
     `);
     expect(
-      stripJsonTrailingCommas(`
+      stripJsonTrailingCommas(
+        `
       [
         1, ,  ,
         ,
       ]
           ,
-    `),
+    `,
+        { stripeWhitespace: false },
+      ),
     ).toBe(`
       [
         1, ,  ,
