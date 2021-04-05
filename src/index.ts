@@ -1,10 +1,10 @@
 export interface Options {
   /** @default true */
-  stripeWhitespace?: boolean;
+  stripWhitespace?: boolean;
 }
 
 export default function stripJsonTrailingCommas(content: string, options: Options = {}): string {
-  if (options.stripeWhitespace ?? true) {
+  if (options.stripWhitespace ?? true) {
     /**
      * preceded by number or string or boolean (true/false) or null or '}' or ']'
      * match with 0 or more spaces and ','
