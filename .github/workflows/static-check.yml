@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - "**.ts"
+      - "**.js"
+      - "**.json"
+      - "**package.json"
+      - "**yarn.lock"
+      - "**ignore"
+      - ".github/workflows/**"
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 12.x, 10.x, 8.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Find cache of node_modules
+        id: node_modules_cache
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: node_modules_${{ hashFiles('**/yarn.lock') }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Execute only when no cache are found
+      - name: Install dependencies
+        if: steps.node_modules_cache.outputs.cache-hit != 'true'
+        run: |
+          yarn --production=false --frozen-lockfile
+
+      - name: Run ESLint
+        run: yarn lint
+
+      - name: Type Checking
+        run: yarn tsc
+
+      - name: Run test
+        run: yarn test:ci

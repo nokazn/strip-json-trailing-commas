@@ -21,6 +21,9 @@
     "remove",
     "delete"
   ],
+  "engines": {
+    "node": ">=8.x"
+  },
   "main": "./lib/index.js",
   "module": "./esm/index.js",
   "exports": {
@@ -46,6 +49,7 @@
     "lint:fix": "eslint --ignore-path .eslintignore ./**/*.{t,j}s{,x} --fix",
     "tsc": "tsc --noEmit",
     "test": "jest",
+    "test:ci": "jest --ci",
     "build:cjs": "rimraf lib/ && tsc -p ./tsconfig.cjs.json",
     "build:esm": "rimraf esm/ && tsc -p ./tsconfig.esm.json",
     "prepublish": "yarn build:cjs && yarn build:esm"
