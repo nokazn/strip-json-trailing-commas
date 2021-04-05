@@ -22,7 +22,7 @@
     "delete"
   ],
   "engines": {
-    "node": ">=8.x"
+    "node": ">=10.14.2"
   },
   "main": "./lib/index.js",
   "module": "./esm/index.js",
