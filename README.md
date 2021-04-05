@@ -1,5 +1,8 @@
 # strip-json-trailing-commas
 
+[![CI](https://github.com/nokazn/strip-json-trailing-commas/workflows/CI/badge.svg)](https://github.com/nokazn/ravyd/actions?workflow=CI)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Strip trailing commas from JSON files.
 
 ## Installation
@@ -39,7 +42,7 @@ console.log(
 
 Type: `string`
 
-Receive JSON string and returns a string without trailing commas.
+Receive JSON string and return a string without trailing commas.
 
 ### `options`
 
