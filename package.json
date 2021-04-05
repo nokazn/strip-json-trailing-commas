@@ -2,15 +2,6 @@
   "name": "strip-json-trailing-commas",
   "version": "1.0.0",
   "description": "Strip trailing comma from JSON files",
-  "license": "MIT",
-  "author": {
-    "name": "nokazn",
-    "url": "https://github.com/nokazn"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nokazn/strip-json-trailing-commas"
-  },
   "keywords": [
     "json",
     "strip",
@@ -21,16 +12,24 @@
     "remove",
     "delete"
   ],
-  "engines": {
-    "node": ">=10.14.2"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nokazn/strip-json-trailing-commas"
   },
-  "main": "./lib/index.js",
-  "module": "./esm/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "nokazn",
+    "url": "https://github.com/nokazn"
+  },
+  "sideEffects": false,
   "exports": {
     "require": "./lib/index.js",
     "import": "./esm/index.js",
     "default": "./lib/index.js"
   },
+  "main": "./lib/index.js",
+  "module": "./esm/index.js",
+  "types": "./lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -40,8 +39,6 @@
     "esm",
     "src"
   ],
-  "types": "./lib/index.d.ts",
-  "sideEffects": false,
   "scripts": {
     "prepare": "husky install",
     "format": "prettier --ignore-path ./.prettierignore --write ./**/*.{t,j}s{,x}",
@@ -73,8 +70,7 @@
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3"
   },
-  "dependencies": {
-    "just-extend": "^4.1.1",
-    "lodash": "^4.17.21"
+  "engines": {
+    "node": ">=10.14.2"
   }
 }
