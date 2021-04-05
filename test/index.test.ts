@@ -1,7 +1,7 @@
 import stripJsonTrailingCommas from '~/index';
 import cases from './fixture/cases';
 
-describe('stripJsonTrailingCommas with stripeWhitespace option', () => {
+describe('stripJsonTrailingCommas with stripWhitespace option', () => {
   it('strip trailing comma after string', () => {
     expect(stripJsonTrailingCommas(cases['strip-trailing-comma-after-string'])).toBe(`
 {
