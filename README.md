@@ -1,5 +1,6 @@
 # strip-json-trailing-commas
 
+[![npm version](https://badge.fury.io/js/strip-json-trailing-commas.svg)](https://badge.fury.io/js/strip-json-trailing-commas)
 [![CI](https://github.com/nokazn/strip-json-trailing-commas/workflows/CI/badge.svg)](https://github.com/nokazn/strip-json-trailing-commas/actions?workflow=CI)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
