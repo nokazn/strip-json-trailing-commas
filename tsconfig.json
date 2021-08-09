@@ -16,7 +16,7 @@
     // "composite": true,
     // "tsBuildInfoFile": "./",
     // "removeComments": true,
-    // "noEmit": true,
+    "noEmit": true,
     // "importHelpers": true,
     // "downlevelIteration": true,
     // "isolatedModules": true,
