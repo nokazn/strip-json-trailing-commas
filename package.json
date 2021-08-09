@@ -22,13 +22,8 @@
     "url": "https://github.com/nokazn"
   },
   "sideEffects": false,
-  "exports": {
-    "require": "./lib/index.js",
-    "import": "./esm/index.js",
-    "default": "./lib/index.js"
-  },
   "main": "./lib/index.js",
-  "module": "./esm/index.js",
+  "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "directories": {
     "lib": "lib",
@@ -36,20 +31,19 @@
   },
   "files": [
     "lib",
-    "esm",
     "src"
   ],
   "scripts": {
     "prepare": "husky install",
-    "format": "prettier --ignore-path ./.prettierignore --write ./**/*.{t,j}s{,x}",
-    "lint": "eslint --ignore-path .eslintignore ./**/*.{t,j}s{,x}",
-    "lint:fix": "eslint --ignore-path .eslintignore ./**/*.{t,j}s{,x} --fix",
-    "tsc": "tsc --noEmit",
+    "format": "prettier --ignore-path ./.prettierignore --write \"./**/*.{t,j}s{,x}\"",
+    "format:diff": "prettier --ignore-path ./.prettierignore --write \"./**/*.{t,j}s{,x}\"  --list-different",
+    "lint": "eslint --ignore-path .eslintignore \"./**/*.{t,j}s{,x}\"",
+    "lint:fix": "eslint --ignore-path .eslintignore \"./**/*.{t,j}s{,x}\" --fix",
+    "tsc": "tsc",
     "test": "jest",
     "test:ci": "jest --ci",
-    "build:cjs": "rimraf lib/ && tsc -p ./tsconfig.cjs.json",
-    "build:esm": "rimraf esm/ && tsc -p ./tsconfig.esm.json",
-    "prepublish": "yarn build:cjs && yarn build:esm"
+    "build": "rimraf lib/ && tsc -p ./tsconfig.build.json",
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
