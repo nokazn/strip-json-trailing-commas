@@ -6,11 +6,19 @@ module.exports = {
   env: {
     es6: true,
     node: true,
-    'jest/globals': true,
   },
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    describe: 'readonly',
+    it: 'readonly',
+    test: 'readonly',
+    expect: 'readonly',
+    vi: 'readonly',
+    beforeEach: 'readonly',
+    afterEach: 'readonly',
+    beforeAll: 'readonly',
+    afterAll: 'readonly',
   },
   extends: [
     'plugin:@typescript-eslint/eslint-recommended',
@@ -24,7 +32,7 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json', './tsconfig.test.json'],
   },
-  plugins: ['@typescript-eslint', 'jest'],
+  plugins: ['@typescript-eslint'],
   rules: {
     // switch 文での prettier との競合を防ぐ
     indent: [ERROR, 2, { SwitchCase: 1 }],

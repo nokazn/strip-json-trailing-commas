@@ -2,7 +2,7 @@
   "compilerOptions": {
     // "incremental": true,
     "target": "es2019",
-    "module": "commonjs",
+    "module": "ESNext",
     // "lib": [],
     "allowJs": true,
     // "checkJs": true,
@@ -35,7 +35,7 @@
     // "noImplicitReturns": true,
     // "noFallthroughCasesInSwitch": true,
 
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "baseUrl": "./",
     "paths": {
       "~/*": [
@@ -44,7 +44,7 @@
     },
     // "rootDirs": [],
     // "typeRoots": [],
-    // "types": [],
+    "types": ["vitest/globals"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     // "preserveSymlinks": true,
@@ -63,8 +63,7 @@
   "include": [
     "./src/**/*.ts",
     "./test/**/*.ts",
-    "babel.config.js",
-    "jest.config.js",
-    ".eslintrc.js",
+    "vitest.config.ts",
+    ".eslintrc.cjs",
   ],
 }
