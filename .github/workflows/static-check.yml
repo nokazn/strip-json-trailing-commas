@@ -19,20 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 12.x, 10.x]
+        node-version: [22.x, 20.x, 18.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Find cache of node_modules
         id: node_modules_cache
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node_modules_${{ hashFiles('**/yarn.lock') }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 

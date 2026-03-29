@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: ahmadnassri/action-workflow-run-wait@v1
 
       - name: Find cache of node_modules
@@ -23,7 +23,7 @@ jobs:
           key: node_modules_${{ hashFiles('**/yarn.lock') }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 

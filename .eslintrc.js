@@ -14,7 +14,7 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/recommended-type-checked',
     'airbnb-base',
     'prettier',
   ],
@@ -55,9 +55,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ERROR,
     'no-unused-vars': ALLOW,
     '@typescript-eslint/no-unused-vars': ERROR,
-    semi: ALLOW,
-    '@typescript-eslint/semi': [ERROR],
-    '@typescript-eslint/member-delimiter-style': ERROR,
     '@typescript-eslint/no-unsafe-return': ALLOW,
+    'no-plusplus': ALLOW,
+    'no-continue': ALLOW,
   },
 };
