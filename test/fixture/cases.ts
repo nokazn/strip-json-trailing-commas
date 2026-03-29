@@ -237,4 +237,8 @@ export default Object.freeze({
     ,
 `,
   ],
+
+  'no-strip-comma-inside-string-value': '{"a":"5,}", "z":{"x":2,}, "b":4,}',
+
+  'strip-trailing-comma-after-string-with-escaped-backslash': '{"a":"5\\\\",}',
 });

@@ -351,4 +351,21 @@ describe('stripJsonTrailingCommas with stripWhitespace option', () => {
     ,
 `);
   });
+
+  it('does not strip comma inside a string value', () => {
+    expect(
+      stripJsonTrailingCommas(cases['no-strip-comma-inside-string-value'], {
+        stripWhitespace: false,
+      }),
+    ).toBe('{"a":"5,}", "z":{"x":2}, "b":4}');
+  });
+
+  it('strips trailing comma after string ending with escaped backslash', () => {
+    expect(
+      stripJsonTrailingCommas(
+        cases['strip-trailing-comma-after-string-with-escaped-backslash'],
+        { stripWhitespace: false },
+      ),
+    ).toBe('{"a":"5\\\\"}');
+  });
 });
