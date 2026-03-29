@@ -1,1 +1,1 @@
-yarn format:diff && yarn lint && yarn tsc
+pnpm format:diff && pnpm lint && pnpm tsc
