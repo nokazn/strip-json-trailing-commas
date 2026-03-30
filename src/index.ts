@@ -13,7 +13,8 @@ function isValidLookbehind(output: string, lastNonWsIdx: number): boolean {
   if (lastChar === '"' || lastChar === '}' || lastChar === ']') return true;
   if (lastChar >= '0' && lastChar <= '9') return true;
   if (lastNonWsIdx >= 3 && output.slice(lastNonWsIdx - 3, lastNonWsIdx + 1) === 'true') return true;
-  if (lastNonWsIdx >= 4 && output.slice(lastNonWsIdx - 4, lastNonWsIdx + 1) === 'false') return true;
+  if (lastNonWsIdx >= 4 && output.slice(lastNonWsIdx - 4, lastNonWsIdx + 1) === 'false')
+    return true;
   if (lastNonWsIdx >= 3 && output.slice(lastNonWsIdx - 3, lastNonWsIdx + 1) === 'null') return true;
   return false;
 }
@@ -59,8 +60,7 @@ export default function stripJsonTrailingCommas(content: string, options: Option
     // カンマ（文字列外）: トレイリングカンマ判定
     let j = i + 1;
     while (j < content.length && isWhitespace(content[j])) j++;
-    const isTrailingCandidate =
-      j < content.length && (content[j] === '}' || content[j] === ']');
+    const isTrailingCandidate = j < content.length && (content[j] === '}' || content[j] === ']');
 
     if (!isTrailingCandidate || !isValidLookbehind(output, lastNonWsOutputIdx)) {
       output += ch;

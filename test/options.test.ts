@@ -362,10 +362,9 @@ describe('stripJsonTrailingCommas with stripWhitespace option', () => {
 
   it('strips trailing comma after string ending with escaped backslash', () => {
     expect(
-      stripJsonTrailingCommas(
-        cases['strip-trailing-comma-after-string-with-escaped-backslash'],
-        { stripWhitespace: false },
-      ),
+      stripJsonTrailingCommas(cases['strip-trailing-comma-after-string-with-escaped-backslash'], {
+        stripWhitespace: false,
+      }),
     ).toBe('{"a":"5\\\\"}');
   });
 });
