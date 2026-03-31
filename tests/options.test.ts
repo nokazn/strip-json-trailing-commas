@@ -1,5 +1,5 @@
 import stripJsonTrailingCommas from "../src/index";
-import cases from "./fixture/cases";
+import { cases } from "./fixture/cases";
 
 describe("stripJsonTrailingCommas with stripWhitespace option", () => {
   it("strip trailing comma after string", () => {

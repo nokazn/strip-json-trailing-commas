@@ -16,16 +16,16 @@ function isNonKeywordChar(ch: string): boolean {
   );
 }
 
-function isValidLookbehind(parts: string[], lastNonWsIdx: number): boolean {
-  if (lastNonWsIdx < 0) return false;
-  const lastChar = parts[lastNonWsIdx];
+function isValidLookbehind(parts: string[], lastNonWsIndex: number): boolean {
+  if (lastNonWsIndex < 0) return false;
+  const lastChar = parts[lastNonWsIndex];
   if (lastChar === '"' || lastChar === "}" || lastChar === "]") return true;
   if (lastChar >= "0" && lastChar <= "9") return true;
-  const tail = parts.slice(Math.max(0, lastNonWsIdx - 4), lastNonWsIdx + 1).join("");
+  const tail = parts.slice(Math.max(0, lastNonWsIndex - 4), lastNonWsIndex + 1).join("");
   for (const kw of ["true", "false", "null"]) {
     if (
       tail.endsWith(kw) &&
-      (lastNonWsIdx < kw.length || isNonKeywordChar(parts[lastNonWsIdx - kw.length]))
+      (lastNonWsIndex < kw.length || isNonKeywordChar(parts[lastNonWsIndex - kw.length]))
     )
       return true;
   }
@@ -53,7 +53,7 @@ function isValidLookbehind(parts: string[], lastNonWsIdx: number): boolean {
 export default function stripJsonTrailingCommas(content: string, options: Options = {}): string {
   const shouldStripWs = options.stripWhitespace ?? true;
   const parts: string[] = [];
-  let lastNonWsOutputIdx = -1;
+  let lastNonWhitespaceOutputIndex = -1;
   let inString = false;
   let escaped = false;
 
@@ -69,21 +69,21 @@ export default function stripJsonTrailingCommas(content: string, options: Option
         inString = false;
       }
       parts.push(ch);
-      lastNonWsOutputIdx = parts.length - 1;
+      lastNonWhitespaceOutputIndex = parts.length - 1;
       continue;
     }
 
     if (ch === '"') {
       inString = true;
       parts.push(ch);
-      lastNonWsOutputIdx = parts.length - 1;
+      lastNonWhitespaceOutputIndex = parts.length - 1;
       continue;
     }
 
     if (ch !== ",") {
       parts.push(ch);
       if (!isWhitespace(ch)) {
-        lastNonWsOutputIdx = parts.length - 1;
+        lastNonWhitespaceOutputIndex = parts.length - 1;
       }
       continue;
     }
@@ -93,14 +93,14 @@ export default function stripJsonTrailingCommas(content: string, options: Option
     while (j < content.length && isWhitespace(content[j])) j++;
     const isTrailingCandidate = j < content.length && (content[j] === "}" || content[j] === "]");
 
-    if (!isTrailingCandidate || !isValidLookbehind(parts, lastNonWsOutputIdx)) {
+    if (!isTrailingCandidate || !isValidLookbehind(parts, lastNonWhitespaceOutputIndex)) {
       parts.push(ch);
-      lastNonWsOutputIdx = parts.length - 1;
+      lastNonWhitespaceOutputIndex = parts.length - 1;
       continue;
     }
 
     if (shouldStripWs) {
-      parts.splice(lastNonWsOutputIdx + 1);
+      parts.splice(lastNonWhitespaceOutputIndex + 1);
     }
   }
 

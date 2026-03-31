@@ -1,4 +1,4 @@
-export default Object.freeze({
+export const cases = Object.freeze({
   "strip-trailing-comma-after-string": `
 {
   "a": "1",
