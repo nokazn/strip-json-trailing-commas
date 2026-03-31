@@ -8,12 +8,6 @@ importers:
 
   .:
     devDependencies:
-      '@oxfmt/binding-darwin-arm64':
-        specifier: 0.43.0
-        version: 0.43.0
-      '@oxlint/binding-darwin-arm64':
-        specifier: 1.58.0
-        version: 1.58.0
       '@types/node':
         specifier: 22.19.15
         version: 22.19.15
@@ -981,7 +975,8 @@ snapshots:
   '@oxfmt/binding-android-arm64@0.43.0':
     optional: true
 
-  '@oxfmt/binding-darwin-arm64@0.43.0': {}
+  '@oxfmt/binding-darwin-arm64@0.43.0':
+    optional: true
 
   '@oxfmt/binding-darwin-x64@0.43.0':
     optional: true
@@ -1037,7 +1032,8 @@ snapshots:
   '@oxlint/binding-android-arm64@1.58.0':
     optional: true
 
-  '@oxlint/binding-darwin-arm64@1.58.0': {}
+  '@oxlint/binding-darwin-arm64@1.58.0':
+    optional: true
 
   '@oxlint/binding-darwin-x64@1.58.0':
     optional: true
