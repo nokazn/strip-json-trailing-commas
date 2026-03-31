@@ -63,7 +63,7 @@
   },
   "include": [
     "./src/**/*.ts",
-    "./test/**/*.ts",
+    "tests/**/*.ts",
     "vitest.config.ts",
   ],
 }

@@ -1,4 +1,4 @@
-import stripJsonTrailingCommas from "~/index";
+import stripJsonTrailingCommas from "../src/index";
 import cases from "./fixture/cases";
 
 describe("stripJsonTrailingCommas with stripWhitespace option", () => {
@@ -366,5 +366,53 @@ describe("stripJsonTrailingCommas with stripWhitespace option", () => {
         stripWhitespace: false,
       }),
     ).toBe('{"a":"5\\\\"}');
+  });
+
+  it("strips trailing comma after negative number", () => {
+    expect(
+      stripJsonTrailingCommas(cases["strip-trailing-comma-after-negative-number"], {
+        stripWhitespace: false,
+      }),
+    ).toBe('{"a": -1}');
+  });
+
+  it("strips trailing comma after decimal number", () => {
+    expect(
+      stripJsonTrailingCommas(cases["strip-trailing-comma-after-decimal"], {
+        stripWhitespace: false,
+      }),
+    ).toBe('{"a": 1.5}');
+  });
+
+  it("strips trailing comma after scientific notation number", () => {
+    expect(
+      stripJsonTrailingCommas(cases["strip-trailing-comma-after-scientific-notation"], {
+        stripWhitespace: false,
+      }),
+    ).toBe('{"a": 1e+10}');
+  });
+
+  it("strips trailing comma after empty string value", () => {
+    expect(
+      stripJsonTrailingCommas(cases["strip-trailing-comma-after-empty-string"], {
+        stripWhitespace: false,
+      }),
+    ).toBe('{"a": ""}');
+  });
+
+  it("strips trailing comma with tab whitespace", () => {
+    expect(
+      stripJsonTrailingCommas(cases["strip-trailing-comma-with-tab-whitespace"], {
+        stripWhitespace: false,
+      }),
+    ).toBe(`{\n\t"a": 1\n}`);
+  });
+
+  it("strips trailing comma with CRLF whitespace", () => {
+    expect(
+      stripJsonTrailingCommas(cases["strip-trailing-comma-with-crlf-whitespace"], {
+        stripWhitespace: false,
+      }),
+    ).toBe('{\r\n  "a": 1\r\n}');
   });
 });

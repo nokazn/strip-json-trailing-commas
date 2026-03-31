@@ -300,4 +300,86 @@ describe("stripJsonTrailingCommas with stripWhitespace option", () => {
       stripJsonTrailingCommas(cases["strip-trailing-comma-after-string-with-escaped-backslash"]),
     ).toBe('{"a":"5\\\\"}');
   });
+
+  it("strips trailing comma after negative number", () => {
+    expect(stripJsonTrailingCommas(cases["strip-trailing-comma-after-negative-number"])).toBe(
+      '{"a": -1}',
+    );
+  });
+
+  it("strips trailing comma after decimal number", () => {
+    expect(stripJsonTrailingCommas(cases["strip-trailing-comma-after-decimal"])).toBe(
+      '{"a": 1.5}',
+    );
+  });
+
+  it("strips trailing comma after scientific notation number", () => {
+    expect(stripJsonTrailingCommas(cases["strip-trailing-comma-after-scientific-notation"])).toBe(
+      '{"a": 1e+10}',
+    );
+  });
+
+  it("strips trailing comma after empty string value", () => {
+    expect(stripJsonTrailingCommas(cases["strip-trailing-comma-after-empty-string"])).toBe(
+      '{"a": ""}',
+    );
+  });
+
+  it("strips trailing comma with tab whitespace", () => {
+    expect(stripJsonTrailingCommas(cases["strip-trailing-comma-with-tab-whitespace"])).toBe(
+      `{\n\t"a": 1\n}`,
+    );
+  });
+
+  it("strips trailing comma with CRLF whitespace", () => {
+    expect(stripJsonTrailingCommas(cases["strip-trailing-comma-with-crlf-whitespace"])).toBe(
+      '{\r\n  "a": 1\r\n}',
+    );
+  });
+
+  it("does not strip trailing comma after identifier ending with 'true'", () => {
+    expect(
+      stripJsonTrailingCommas(cases["ignore-trailing-comma-after-identifier-ending-with-true"]),
+    ).toBe("[xtrue,]");
+  });
+
+  it("does not strip trailing comma after identifier ending with 'false'", () => {
+    expect(
+      stripJsonTrailingCommas(cases["ignore-trailing-comma-after-identifier-ending-with-false"]),
+    ).toBe("[xfalse,]");
+  });
+
+  it("does not strip trailing comma after identifier ending with 'null'", () => {
+    expect(
+      stripJsonTrailingCommas(cases["ignore-trailing-comma-after-identifier-ending-with-null"]),
+    ).toBe("[xnull,]");
+  });
+
+  it("processes large JSON with many trailing commas efficiently", () => {
+    const count = 10_000;
+    const entries = Array.from({ length: count }, (_, i) => `"key${i}": ${i}`).join(",\n  ");
+    const input = `{\n  ${entries},\n}`;
+
+    const start = performance.now();
+    const result = stripJsonTrailingCommas(input);
+    const elapsed = performance.now() - start;
+
+    expect(result).toMatch(/\d\n}$/);
+    expect(result).not.toMatch(/,\n}$/);
+    expect(elapsed).toBeLessThan(500);
+  });
+
+  it("processes extremely large JSON (~10MB) without issues", () => {
+    const count = 500_000;
+    const entries = Array.from({ length: count }, (_, i) => `"key${i}": ${i}`).join(",\n  ");
+    const input = `{\n  ${entries},\n}`;
+
+    const start = performance.now();
+    const result = stripJsonTrailingCommas(input);
+    const elapsed = performance.now() - start;
+
+    expect(result).toMatch(/\d\n}$/);
+    expect(result).not.toMatch(/,\n}$/);
+    expect(elapsed).toBeLessThan(5000);
+  });
 });

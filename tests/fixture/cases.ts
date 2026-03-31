@@ -241,4 +241,22 @@ export default Object.freeze({
   "no-strip-comma-inside-string-value": '{"a":"5,}", "z":{"x":2,}, "b":4,}',
 
   "strip-trailing-comma-after-string-with-escaped-backslash": '{"a":"5\\\\",}',
+
+  "strip-trailing-comma-after-negative-number": '{"a": -1,}',
+
+  "strip-trailing-comma-after-decimal": '{"a": 1.5,}',
+
+  "strip-trailing-comma-after-scientific-notation": '{"a": 1e+10,}',
+
+  "strip-trailing-comma-after-empty-string": '{"a": "",}',
+
+  "strip-trailing-comma-with-tab-whitespace": `{\n\t"a": 1,\n}`,
+
+  "strip-trailing-comma-with-crlf-whitespace": '{\r\n  "a": 1,\r\n}',
+
+  "ignore-trailing-comma-after-identifier-ending-with-true": "[xtrue,]",
+
+  "ignore-trailing-comma-after-identifier-ending-with-false": "[xfalse,]",
+
+  "ignore-trailing-comma-after-identifier-ending-with-null": "[xnull,]",
 });
