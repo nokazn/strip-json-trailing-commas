@@ -6,16 +6,17 @@
 
 Strip trailing commas from JSON files.
 
+## Requirements
+
+Node.js >= v18.0.0
+
 ## Installation
 
 ```bash
-$ yarn add strip-json-trailing-commas
-```
-
-or
-
-```bash
 $ npm i strip-json-trailing-commas
+$ yarn add strip-json-trailing-commas
+$ pnpm i strip-json-trailing-commas
+$ bun i strip-json-trailing-commas
 ```
 
 ## Usage
