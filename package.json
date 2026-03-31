@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nokazn/strip-json-trailing-commas"
+    "url": "git+https://github.com/nokazn/strip-json-trailing-commas.git"
   },
   "license": "MIT",
   "author": {
