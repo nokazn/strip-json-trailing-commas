@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "import"],
+  "rules": {
+    "no-console": ["warn", { "allow": ["info", "warn", "error"] }],
+    "typescript/no-unused-vars": "error",
+    "import/extensions": [
+      "error",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never",
+        "json": "never"
+      }
+    ]
+  },
+  "ignorePatterns": ["node_modules", "lib", "esm", "**/*.d.ts"]
+}

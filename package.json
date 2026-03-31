@@ -1,6 +1,6 @@
 {
   "name": "strip-json-trailing-commas",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Strip trailing comma from JSON files",
   "keywords": [
     "json",
@@ -36,10 +36,10 @@
   ],
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --ignore-path ./.prettierignore --write \"./**/*.{t,j}s{,x}\"",
-    "format:diff": "prettier --ignore-path ./.prettierignore --write \"./**/*.{t,j}s{,x}\"  --list-different",
-    "lint": "eslint --ignore-path .eslintignore \"./**/*.{t,j}s{,x}\"",
-    "lint:fix": "eslint --ignore-path .eslintignore \"./**/*.{t,j}s{,x}\" --fix",
+    "format": "oxfmt src/ test/ vitest.config.ts",
+    "format:check": "oxfmt --check src/ test/ vitest.config.ts",
+    "lint": "oxlint --config .oxlintrc.json src/ test/ vitest.config.ts",
+    "lint:fix": "oxlint --config .oxlintrc.json --fix src/ test/ vitest.config.ts",
     "tsc": "tsc",
     "test": "vitest run",
     "test:ci": "vitest run",
@@ -47,18 +47,15 @@
     "prepublish": "pnpm build"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.31.0",
-    "@typescript-eslint/parser": "^8.31.0",
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import": "^2.32.0",
-    "husky": "^9.1.7",
-    "prettier": "^3.5.3",
-    "rimraf": "^6.1.3",
-    "typescript": "^5.8.0",
-    "vitest": "~3.1.1"
+    "@oxfmt/binding-darwin-arm64": "0.43.0",
+    "@oxlint/binding-darwin-arm64": "1.58.0",
+    "@types/node": "22.19.15",
+    "husky": "9.1.7",
+    "oxfmt": "0.43.0",
+    "oxlint": "1.58.0",
+    "rimraf": "6.1.3",
+    "typescript": "5.9.3",
+    "vitest": "3.1.4"
   },
   "engines": {
     "node": ">=18.0.0"

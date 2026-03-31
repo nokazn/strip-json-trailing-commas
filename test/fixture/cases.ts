@@ -1,59 +1,59 @@
 export default Object.freeze({
-  'strip-trailing-comma-after-string': `
+  "strip-trailing-comma-after-string": `
 {
   "a": "1",
 }
 `,
 
-  'strip-trailing-comma-after-number': `
+  "strip-trailing-comma-after-number": `
 {
   "a": 1,
 }
 `,
 
-  'strip-trailing-comma-after-true': `
+  "strip-trailing-comma-after-true": `
 {
   "a": true,
 }
 `,
 
-  'strip-trailing-comma-after-false': `
+  "strip-trailing-comma-after-false": `
 {
   "a": false,
 }
 `,
 
-  'strip-trailing-comma-after-null': `
+  "strip-trailing-comma-after-null": `
 {
   "a": null,
 }
 `,
 
-  'strip-trailing-comma-after-object': `
+  "strip-trailing-comma-after-object": `
 {
   "a": {},
 }
 `,
 
-  'strip-trailing-comma-after-array': `
+  "strip-trailing-comma-after-array": `
 {
   "a": [],
 }
 `,
 
-  'ignore-trailing-comma-after-invalid-value': `
+  "ignore-trailing-comma-after-invalid-value": `
 {
   "a": a,
 }
 `,
 
-  'ignore-trailing-comma-after-missing-value': `
+  "ignore-trailing-comma-after-missing-value": `
 {
   "a": ,
 }
 `,
 
-  'strip-trailing-comma-at-object': `
+  "strip-trailing-comma-at-object": `
 {
   "a": {
     "b": "1",
@@ -63,7 +63,7 @@ export default Object.freeze({
 }
 `,
 
-  'strip-trailing-comma-at-nested-objects': `
+  "strip-trailing-comma-at-nested-objects": `
 {
   "a": {
     "b": {
@@ -83,7 +83,7 @@ export default Object.freeze({
 }
 `,
 
-  'strip-trailing-comma-at-array': `
+  "strip-trailing-comma-at-array": `
 {
   "a": [
     1,
@@ -93,7 +93,7 @@ export default Object.freeze({
 }
 `,
 
-  'strip-trailing-comma-at-nested-arrays': `
+  "strip-trailing-comma-at-nested-arrays": `
 {
   "a": [
     [
@@ -125,7 +125,7 @@ export default Object.freeze({
 }
 `,
 
-  'strip-trailing-comma-in-objects-and-arrays': `
+  "strip-trailing-comma-in-objects-and-arrays": `
 {
   "a": {
     "b": [
@@ -176,7 +176,7 @@ export default Object.freeze({
 }
 `,
 
-  'ignore-invalid-trailing-comma-at-end-of-the-content': [
+  "ignore-invalid-trailing-comma-at-end-of-the-content": [
     `
 {},
 `,
@@ -186,16 +186,16 @@ export default Object.freeze({
 `,
   ],
 
-  'ignore-invalid-trailing-comma-in-empty-object': `
+  "ignore-invalid-trailing-comma-in-empty-object": `
 {,},
 `,
 
-  'ignore-invalid-trailing-comma-in-empty-object-with-some-spaces': `
+  "ignore-invalid-trailing-comma-in-empty-object-with-some-spaces": `
 {    ,  }
     ,
 `,
 
-  'ignore-multiple-trailing-commas-in-object': [
+  "ignore-multiple-trailing-commas-in-object": [
     `
 {
   "a": 1,,
@@ -210,11 +210,11 @@ export default Object.freeze({
 `,
   ],
 
-  'ignore-invalid-trailing-comma-in-empty-array': `
+  "ignore-invalid-trailing-comma-in-empty-array": `
 [,],
 `,
 
-  'ignore-invalid-trailing-comma-in-empty-array-with-some-spaces': [
+  "ignore-invalid-trailing-comma-in-empty-array-with-some-spaces": [
     `
 [    ,  ]
     ,
@@ -225,7 +225,7 @@ export default Object.freeze({
 `,
   ],
 
-  'ignore-multiple-trailing-commas-in-array': [
+  "ignore-multiple-trailing-commas-in-array": [
     `
 [1,,]
 `,
@@ -238,7 +238,7 @@ export default Object.freeze({
 `,
   ],
 
-  'no-strip-comma-inside-string-value': '{"a":"5,}", "z":{"x":2,}, "b":4,}',
+  "no-strip-comma-inside-string-value": '{"a":"5,}", "z":{"x":2,}, "b":4,}',
 
-  'strip-trailing-comma-after-string-with-escaped-backslash': '{"a":"5\\\\",}',
+  "strip-trailing-comma-after-string-with-escaped-backslash": '{"a":"5\\\\",}',
 });
