@@ -10,6 +10,9 @@ on:
 jobs:
   publish-npm-package:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +25,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: .node-version
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
